@@ -9,14 +9,11 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
-
-// generates a random number from 1 to 6 and round it (does not return a decimal number, just an integer)
-dice = Math.floor(Math.random() * 6 ) + 1;
 
 /*
 querySelector lets us select stuff exactly the way we do it in css
@@ -41,9 +38,8 @@ finds (a solution for that will come out later though)
 
 //document.querySelector('#current-0').textContent = dice; no dynamic
 
-
 // shows dice dynamically from the activePlayer variable
-document.querySelector('#current-' + activePlayer).textContent = dice;
+//document.querySelector('#current-' + activePlayer).textContent = dice;
 
 
 // reads elements from our web page and stores it in some variable for example
@@ -60,3 +56,58 @@ document.querySelector('#current-' + activePlayer).textContent = dice;
 */
 
 document.querySelector('.dice').style.display = 'none';
+
+// another way to look for ID (which is a bit faster)
+
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+
+// ---------------------addEventListener explanation with the callback function definition
+
+// example of what a callback function is
+// imagine we want a function to be called when we click a button
+
+//function btn() {
+    // Do something here
+//}
+
+// calling the btn function
+//btn();
+
+// the correct way to call the function would be like this:
+//document.querySelector('.btn-roll').addEventListener('click', btn);
+
+// the incorrect way would be like this:
+//document.querySelector('.btn-roll').addEventListener('click', btn());
+
+// We don't want the function the called here.
+// We want it to be called BY THE addEventListener
+
+// the correct way to call the function would be like this:
+
+//document.querySelector('.btn-roll').addEventListener('click', function() {
+//    
+//});
+
+// -----------------------this is another concept, anonymous function
+// which is a function that does not have a name
+// and we can not use it outside this context here
+
+document.querySelector('.btn-roll').addEventListener('click', function() {
+
+    //1. Random number
+    // generates a random number from 1 to 6 and round it (does not return a decimal number, just an integer)
+    var dice = Math.floor(Math.random() * 6 ) + 1;
+
+    //2. Display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block';
+    diceDOM.src = 'dice-' + dice + '.png';
+
+    //3. Update the round score IF the rolled number was NOT a 1
+    
+});
+
