@@ -114,37 +114,62 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {
         // Next Player
-        // ternary operator
-        // if activePlayer === 0 then change it to 1, else change it to 0
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        roundScore = 0;
-
-        // reset current score for both players when any of them gets a 1
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-
-        // remove a class 
-        // this will remove the active class when getting 1 on dice
-        // it will also deactive the gray background
-        // the red dot and also the bolded player name
-        //document.querySelector('.player-0-panel').classList.remove('active');
-
-        // add a class
-        // this will add the active class on the next player
-        // it will also active the gray background on the actual player
-        // show the red dot and will bold the player name
-        //document.querySelector('.player-1-panel').classList.add('active');
-        
-        // another way to play with classes is using the toggle method
-        // what toggle does is to add another class if it is not there
-        // and if it is there, then remove it
-        // toggle a class
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-        
-        // hide the dice when any of the players gets a 1
-        document.querySelector('.dice').style.display = 'none';
+        nextPlayer();
 
     }
 });
 
+document.querySelector('.btn-hold').addEventListener('click', function() {
+    // Add CURRENT score to GLOBAL score
+    scores[activePlayer] += roundScore;
+
+    // Update the UI
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+    // Check if player won the game
+    if (scores[activePlayer] >= 20) {
+        document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    } else {
+        //Next Player
+        nextPlayer();
+    }
+
+});
+
+
+function nextPlayer() {
+    // Next Player
+    // ternary operator
+    // if activePlayer === 0 then change it to 1, else change it to 0
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+
+    // reset current score for both players when any of them gets a 1
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    // remove a class 
+    // this will remove the active class when getting 1 on dice
+    // it will also deactive the gray background
+    // the red dot and also the bolded player name
+    //document.querySelector('.player-0-panel').classList.remove('active');
+
+    // add a class
+    // this will add the active class on the next player
+    // it will also active the gray background on the actual player
+    // show the red dot and will bold the player name
+    //document.querySelector('.player-1-panel').classList.add('active');
+
+    // another way to play with classes is using the toggle method
+    // what toggle does is to add another class if it is not there
+    // and if it is there, then remove it
+    // toggle a class
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    // hide the dice when any of the players gets a 1
+    document.querySelector('.dice').style.display = 'none';
+}
