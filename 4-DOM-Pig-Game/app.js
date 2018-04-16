@@ -11,9 +11,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+init();
 
 /*
 querySelector lets us select stuff exactly the way we do it in css
@@ -54,16 +52,6 @@ finds (a solution for that will come out later though)
 - 'none' is the value of the display property
 
 */
-
-document.querySelector('.dice').style.display = 'none';
-
-// another way to look for ID (which is a bit faster)
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-
 
 // ---------------------addEventListener explanation with the callback function definition
 
@@ -172,4 +160,26 @@ function nextPlayer() {
 
     // hide the dice when any of the players gets a 1
     document.querySelector('.dice').style.display = 'none';
+}
+
+document.querySelector('.btn-new').addEventListener('click', init );
+
+function init () {
+    scores = [0,0];
+    activePlayer = 0;
+    roundScore = 0;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
 }
