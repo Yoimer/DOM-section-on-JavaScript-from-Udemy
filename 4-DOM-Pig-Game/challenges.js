@@ -13,6 +13,8 @@ var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
+var lastDice;
+
 /*
 querySelector lets us select stuff exactly the way we do it in css
 the only difference is, it only selects the first element that it
@@ -97,7 +99,12 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         diceDOM.src = 'dice-' + dice + '.png';
 
         //3. Update the round score IF the rolled number was NOT a 1
-        if (dice !== 1) {
+        if (dice === 6 && lastDice === 6) {
+            // Player looses score
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        } else if (dice !== 1) {
             //Add score
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
@@ -105,6 +112,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
             // Next Player
             nextPlayer();
         }
+        lastDice = dice;
     }
 
 });
@@ -118,7 +126,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
         // Check if player won the game
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= 100) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -195,7 +203,7 @@ YOUR 3 CHALLENGES
 Change the game the follow these rules:
 
 1. A player looses his ENTIRE score when he rools two 6 in a row. After that, it's the next
-player's turn. (Hint: always save the previous dice roll in a separate vaiable)
+player's turn. (Hint: always save the previous dice roll in a separate variable)
 
 2. Add an input field to the HTML where the players can set the winning score, so that they
 change the predefined score of 100. (Hint: you can read that value with the .value property in Javascript. This is a good oportunity to use google to figure this out: )
