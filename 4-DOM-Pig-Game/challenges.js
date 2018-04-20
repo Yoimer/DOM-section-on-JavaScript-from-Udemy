@@ -235,6 +235,9 @@ function init () {
     document.querySelector('.player-0-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
+    // resets placeholder value to its initial value
+    document.querySelector('.final-score').value = "";
+    document.querySelector('.final-score').placeholder = "Final score";
 }
 
 
