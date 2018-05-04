@@ -85,3 +85,15 @@ var jane = Object.create(personProto,
     yearOfBirth: { value: 1969 },
     job: { value: 'designer' }
 });
+
+/*
+Explanation
+
+The difference of Object.create and
+function constructor pattern is that
+object.create builds an object that inherits directly from the one that
+we pass into to first argument.
+While in the other hand function constructor the newly created object
+inherits from the constructors prototype property
+
+*/
