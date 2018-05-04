@@ -68,23 +68,23 @@
 
 // Object.create
 
-var personProto = {
-    calculateAge: function () {
-        console.log(2018 - this.yearOfBirth);
-    }
-};
+// var personProto = {
+//     calculateAge: function () {
+//         console.log(2018 - this.yearOfBirth);
+//     }
+// };
 
-var john = Object.create(personProto);
-john.name = 'John';
-john.yearOfBirth = 1990;
-john.job = 'teacher';
+// var john = Object.create(personProto);
+// john.name = 'John';
+// john.yearOfBirth = 1990;
+// john.job = 'teacher';
 
-var jane = Object.create(personProto,
-{
-    name: { value: 'Jane' },
-    yearOfBirth: { value: 1969 },
-    job: { value: 'designer' }
-});
+// var jane = Object.create(personProto,
+// {
+//     name: { value: 'Jane' },
+//     yearOfBirth: { value: 1969 },
+//     job: { value: 'designer' }
+// });
 
 /*
 Explanation
@@ -96,4 +96,57 @@ we pass into to first argument.
 While in the other hand function constructor the newly created object
 inherits from the constructors prototype property
 
+*/
+
+// Primitives vs objects
+
+/*
+Variables containing primitives actually hold that data inside the
+variable itself.
+On objects it is very different. The variables associated with objects
+do not actually contain the object but instead, they contain a reference
+to the place in memory where the object sits, where object stores.
+Again, a variable declared as an object, does not have a real copy of the object;
+it just points to that object.
+*/
+
+var a = 23;
+var b = a;
+a = 46;
+// console.log(a);
+// console.log(b);
+
+// Objects
+var obj1 = {
+    name: 'John',
+    age: 26
+};
+var obj2 = obj1;
+obj1.age = 30;
+// console.log(obj1.age);
+// console.log(obj2.age);
+
+// Functions
+var age = 27;
+var obj = {
+    name: 'Jonas',
+    city: 'Lisbon'
+};
+
+function change (a, b) {
+    a = 30;
+    b.city = 'San Francisco';
+}
+
+change(age, obj);
+console.log(age); // 30
+console.log(obj.city); // San Francisco
+
+/*
+When we pass a primitve into a function a simple copy is created.
+We can change 'a' as much as we want (inside function change),
+it will neve affect the variable from the outside cos it is a primitive.
+But when we pass an object, it is NOT REALLY AN OBJECT that we pass, but a reference to that object.
+Again, we dot not pass an object into a function, but only the reference that points to that object.
+So when we change the object inside the function, it sitll reflects it outside the function.
 */
