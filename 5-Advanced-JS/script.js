@@ -1,4 +1,4 @@
-// // // Function constructor
+ // // // Function constructor
 
 // // var john = {
 // //     name: 'John',
@@ -154,43 +154,87 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // Lecture: Passing functions as arguments
 // CALLBACK FUNCTIONS!!!!!!!! YEAHH
-var years = [1990, 1965, 1937, 2005, 1998];
+// var years = [1990, 1965, 1937, 2005, 1998];
 
-function arrayCalc(arr, fn) {
-    var arrRes = [];
-    //The push() method adds new items to the end of an array, and returns the new length
-    for (var i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));
-    }
-    return arrRes;
-}
+// function arrayCalc(arr, fn) {
+//     var arrRes = [];
+//     //The push() method adds new items to the end of an array, and returns the new length
+//     for (var i = 0; i < arr.length; i++) {
+//         arrRes.push(fn(arr[i]));
+//     }
+//     return arrRes;
+// }
 
-// el stands for element
-function calculateAge(el) {
-    return (2018 - el);
-}
+// // el stands for element
+// function calculateAge(el) {
+//     return (2018 - el);
+// }
 
-// returns true if and only if el is >=18
-function isFullAge(el) {
-    return el >= 18;
-}
+// // returns true if and only if el is >=18
+// function isFullAge(el) {
+//     return el >= 18;
+// }
 
-function maxHeartRate (el) {
-    if (el >= 18 && el <= 81) {
-        return Math.round(206.9 - (0.67 * el));
+// function maxHeartRate (el) {
+//     if (el >= 18 && el <= 81) {
+//         return Math.round(206.9 - (0.67 * el));
+//     } else {
+//         return - 1;
+//     }
+// }
+
+// //passing calculateAge function as an argument (callback)
+// var ages = arrayCalc(years, calculateAge);
+// console.log(ages);
+
+// //passing isFullAge function as an argument (callback)
+// var fullAges = arrayCalc(ages, isFullAge);
+// console.log(fullAges);
+
+// //passing maxHeartRate function as an argument (callback)
+// var rates = arrayCalc(ages, maxHeartRate);
+// console.log(rates);
+
+//////////////////////////////////////////////////////////////////////////////////////
+// Lecture: Functions returning functions
+
+function interviewQuestion(job) {
+    if (job === 'designer') {
+        //anonymous function, it has no name
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if (job === 'teacher') {
+        return function(name) {
+            console.log('What subject do you teach, ' + name + '?');
+        }
     } else {
-        return - 1;
+        return function(name) {
+            console.log('Hello ' + name + ', ')
+        }
     }
 }
 
-//passing calculateAge function as an argument (callback)
-var ages = arrayCalc(years, calculateAge);
-console.log(ages);
+// here teacherQuestion is declared as a variable.
+// later it will become a function
+var teacherQuestion = interviewQuestion('teacher');
+// now calling this variable as a function
+teacherQuestion('John');
 
-//passing isFullAge function as an argument (callback)
-var fullAges = arrayCalc(ages, isFullAge);
-console.log(fullAges);
+// here tdesignerQuestion is declared as a variable.
+// later it will become a function
+var designerQuestion = interviewQuestion('designer');
+designerQuestion('John');
 
-//passing maxHeartRate function as an argument (callback)
-var rates = arrayCalc(ages, maxHeartRate);
-console.log(rates);
+// we can use designerQuestion as many times as you want to.
+designerQuestion('John');
+designerQuestion('Jane');
+designerQuestion('Mark');
+designerQuestion('Mike');
+
+// another way the gat the same approach
+// interviewQuestion will return a function
+// there is no need to store this function in a variable
+// we could use it immediately as shown above
+// this works from LEFT TO RIGHT
+interviewQuestion('teacher')('Robert');
