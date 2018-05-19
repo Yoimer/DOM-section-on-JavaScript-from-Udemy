@@ -434,3 +434,63 @@ the tools you feel more comfortable at this point).
 11 Display the score in the console, Use yet method for this.
 
 */
+
+// item number 7 (using IIFE)
+
+(function(){
+    function Question (question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
+    }
+
+    // explanation of displayQuestion method
+    // when this method is called on q1
+    // then the 'this' keyboad here will of course point to q1
+    // and the question associated with q1 will be retrieved.
+    // if we call displayQuestion on q2 the the 'this' keyboard here points to q2.
+    // the same applies to q3
+    // the displayQuestion method is not attached to one of this questions.
+    // but it is in their prototype
+    // and so, all of these objects can access it, through the prototype chain.
+
+    Question.prototype.displayQuestion = function (){
+        console.log(this.question);
+
+        for (var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+
+    Question.prototype.checkAnswer = function (ans) {
+        if (ans === this.correct) {
+            console.log('Correct answer! :)');
+        } else {
+            console.log("Wrong answer. Try again!");
+        }
+    }
+
+    var q1 = new Question ('Is JavaScript the coolest programming language in the world', ['Yes', 'No'], 0);
+
+    var q2 = new Question('What is the name of this course\'s teacher?', ['John','Michael', 'Jonas'], 2);
+
+    var q3 = new Question ('What does best describe coding?', ['Boring', 'Hard', 'Fun', 'Tediuos'], 2);
+
+    var  questions = [q1, q2, q3];
+
+    var n =  Math.floor(Math.random() * questions.length);
+
+    questions[n].displayQuestion();
+
+    //parseInt
+    //convert string in integers
+    var answer = parseInt(prompt('Please select the correct answer.'));
+
+    questions[n].checkAnswer(answer);
+})();
+
+/* if now, someonelse includes this code in their project,
+    and also has a variable called question, a vaiable called n
+    or a variable called answer, then that would not interfere with our code.
+    Our code is safe, because no other code is ever going to override it.
+*/
