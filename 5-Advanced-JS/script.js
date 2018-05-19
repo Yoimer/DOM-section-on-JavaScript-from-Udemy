@@ -319,31 +319,31 @@
 //////////////////////////////////
 // Lecture BIND, CALL and APPLY.
 
-var john = {
-    name: 'John',
-    age: 26,
-    job: 'teacher',
-    presentation: function(style, timeOfDay) {
-        if (style === 'formal') {
-            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
-        } else if (style === 'friendly') {
-            console.log('Hey! What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + 'and I\'m ' + this.age + ' year old. Have a nice ' + timeOfDay + '.');
-        }
-    }
-};
+// var john = {
+//     name: 'John',
+//     age: 26,
+//     job: 'teacher',
+//     presentation: function(style, timeOfDay) {
+//         if (style === 'formal') {
+//             console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+//         } else if (style === 'friendly') {
+//             console.log('Hey! What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + 'and I\'m ' + this.age + ' year old. Have a nice ' + timeOfDay + '.');
+//         }
+//     }
+// };
 
-john.presentation('formal', 'morning');
+// john.presentation('formal', 'morning');
 
-var emily = {
-    name: 'Emily',
-    age: 35,
-    job: 'designer'
-};
-// how could we use the presentation method for
-// the emily object since it does not have it?
-// let's start using the call method
-// the call method is AKA method borrowing
-john.presentation.call(emily, 'friendly', 'afternoon');
+// var emily = {
+//     name: 'Emily',
+//     age: 35,
+//     job: 'designer'
+// };
+// // how could we use the presentation method for
+// // the emily object since it does not have it?
+// // let's start using the call method
+// // the call method is AKA method borrowing
+// john.presentation.call(emily, 'friendly', 'afternoon');
 
 // the apply method is similar to call
 // but apply method expects an array argument instead of a string
@@ -360,36 +360,77 @@ john.presentation.call(emily, 'friendly', 'afternoon');
 
 // at this point we won't set the timeOfDay
 // this is what we call, currying in JS
-var johnFriendly = john.presentation.bind(john, 'friendly');
-johnFriendly('morning');
-johnFriendly('night');
+// var johnFriendly = john.presentation.bind(john, 'friendly');
+// johnFriendly('morning');
+// johnFriendly('night');
 
-var emilyFormal = john.presentation.bind(emily, 'formal');
-emilyFormal('afternoon');
+// var emilyFormal = john.presentation.bind(emily, 'formal');
+// emilyFormal('afternoon');
 
 
-var years = [1990, 1965, 1937, 2005, 1998];
+// var years = [1990, 1965, 1937, 2005, 1998];
 
-function arrayCalc(arr, fn) {
-    var arrRes = [];
-    //The push() method adds new items to the end of an array, and returns the new length
-    for (var i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));
-    }
-    return arrRes;
-}
+// function arrayCalc(arr, fn) {
+//     var arrRes = [];
+//     //The push() method adds new items to the end of an array, and returns the new length
+//     for (var i = 0; i < arr.length; i++) {
+//         arrRes.push(fn(arr[i]));
+//     }
+//     return arrRes;
+// }
 
-//el stands for element
-function calculateAge(el) {
-    return (2018 - el);
-}
+// //el stands for element
+// function calculateAge(el) {
+//     return (2018 - el);
+// }
 
-//returns true if and only if el is >=18
-function isFullAge(limit, el) {
-    return el >= limit;
-}
+// //returns true if and only if el is >=18
+// function isFullAge(limit, el) {
+//     return el >= limit;
+// }
 
-var ages = arrayCalc(years, calculateAge);
-var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
-console.log(ages);
-console.log(fullJapan);
+// var ages = arrayCalc(years, calculateAge);
+// var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+// console.log(ages);
+// console.log(fullJapan);
+
+///////////////////////////////////////////////////////////////////
+// CODING CHALLENGE
+
+/*
+--- Let's build a fun quiz game in the console! ---
+
+1. Build a function constructor called Question to describe a question. A question should include:
+
+a) question itself?
+b) the answers from which the player can choose the correct one (choose an adequate data structure here, array, object, etc)
+c) correct answer (I would use a number for this)
+
+2. Create a couple of questions using the constructor
+
+3. Store them all inside an array
+
+4. Select one random question and log it on the console, together with the possible answers (each question sould have a number)
+(Hint: write a method for the Question objects for this task).
+
+5 Use the 'prompt' function to ask the user for the correct answer. The user should input the number of the correct answer such as you diplayed it on Task 4.
+
+6. Check if them answer is correct and print to the console whether the answer is correct or not (Hint: write another method for this)
+
+7  Suppose this could would be a plugin for other programmers to use in their code. SO make sure that all
+your coude is private and doesn't interfere with the other programmers code (Hint: We learned a special technique to do exactly that)
+
+--- Expert Level ---
+
+8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result).
+
+9 .Be careful: after Task8, the game literally neve ends. So include the option to quit the game if the user
+writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
+
+10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score.
+(Hint: I'm going to use the power of closures for this, but you don't have to, just do this with
+the tools you feel more comfortable at this point).
+
+11 Display the score in the console, Use yet method for this.
+
+*/
