@@ -3,3 +3,5 @@ https://tester.codebasehq.com/dom-section-on-javascript-from-udemy/dom-section-o
 
 SSH
 git@codebasehq.com:tester/dom-section-on-javascript-from-udemy/dom-section-on-javascript-from-udemy.git
+
+Syncronising from Yoimer PC 22:01 July 5th 2018
