@@ -246,13 +246,16 @@ var UIController = (function() {
 
             fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
 
+            // converts fields list into an string array
             fieldsArr = Array.prototype.slice.call(fields);
 
+            // forEach loop avoing a for loop itself
             //clears all fields
             fieldsArr.forEach(function(current, index, array) {
                 current.value = "";
             });
 
+            // focusing description field after entering an income or expense
             fieldsArr[0].focus();
         },
 
