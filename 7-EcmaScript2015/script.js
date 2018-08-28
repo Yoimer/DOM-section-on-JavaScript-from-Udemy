@@ -219,46 +219,46 @@ var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish'); */
 // but in map we can use any kind of primative value like number, string or boolean.
 // or we could even use function, or objects as keys
 
-const question = new Map();
-// this is how we define a new key pair in a map
-question.set('question', 'What is the official name of the lastest major Javascript version?');
-question.set(1, 'ES5');
-question.set(2, 'ES6');
-question.set(3, 'ES2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set(true, 'Correct answer :D');
-question.set(false, 'Wrong, please try again!');
+// const question = new Map();
+// // this is how we define a new key pair in a map
+// question.set('question', 'What is the official name of the lastest major Javascript version?');
+// question.set(1, 'ES5');
+// question.set(2, 'ES6');
+// question.set(3, 'ES2015');
+// question.set(4, 'ES7');
+// question.set('correct', 3);
+// question.set(true, 'Correct answer :D');
+// question.set(false, 'Wrong, please try again!');
 
 // retrieve data from map
-console.log(question.get('question'));
-// get size
-console.log(question.size);
-// delete 
-// question.delete(4);
+// console.log(question.get('question'));
+// // get size
+// console.log(question.size);
+// // delete 
+// // question.delete(4);
 
-//checks for an element
-if(question.has(4)) {
-    // question.delete(4);
-    console.log('Answer 4 is here');
-}
+// //checks for an element
+// if(question.has(4)) {
+//     // question.delete(4);
+//     console.log('Answer 4 is here');
+// }
 
 // deletes all the values on map at the same time
 // question.clear();
 
 // for loops in maps
-question.forEach((value, key) => console.log(`This is ${key}, and it's set to ${value}`));
+// question.forEach((value, key) => console.log(`This is ${key}, and it's set to ${value}`));
 
 // for of loop
-for (let [key, value] of question.entries()) {
-    // console.log(`This is ${key}, and it's set to ${value}`);
-    if (typeof(key) === 'number') {
-        console.log(`Answet ${key}: ${value}`);
-    }
-}
+// for (let [key, value] of question.entries()) {
+//     // console.log(`This is ${key}, and it's set to ${value}`);
+//     if (typeof(key) === 'number') {
+//         console.log(`Answet ${key}: ${value}`);
+//     }
+// }
 
-const ans = parseInt(prompt('Write the correct answer'));
-console.log(question.get(ans === question.get('correct')));
+// const ans = parseInt(prompt('Write the correct answer'));
+// console.log(question.get(ans === question.get('correct')));
 
 // summarize
 // why are maps better than objects
@@ -267,3 +267,42 @@ console.log(question.get(ans === question.get('correct')));
 // maps are iterable we can loop through them
 // it is really easy to get the size of the map with the size method
 // we can easily get and remove data from them
+
+///////////////////////////////////
+// Lecture: Classes
+
+//ES5
+var Person5 = function(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+}
+
+Person5.prototype.calculateAge = function() {
+    var age = new Date().getFullYear - this.yearOfBirth;
+    console.log(age);
+}
+
+john5 = new Person5('John', 1990, 'teacher');
+
+//ES6
+class Person6 {
+    constructor (name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+
+    calculateAge() {
+        var age = new Date().getFullYear - this.yearOfBirth;
+        console.log(age);
+    }
+
+    static greeting() {
+        console.log('Hey there!');
+    }
+}
+
+const john6 = new Person6('John', 1990, 'teacher');
+
+Person6.greeting();
