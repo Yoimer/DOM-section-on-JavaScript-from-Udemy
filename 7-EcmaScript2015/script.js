@@ -481,38 +481,38 @@ var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish'); */
 // let is block scoped
 
 //ES5
-function driversLicense5(passedTest) {
-    if (passedTest) {
-        //hoisted
-        // console.log(firstName); (undefined)
-        var firstName = 'John';
-        var yearOfBirth = 1990;
-    }
-    // this will work
-    console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
-}
+// function driversLicense5(passedTest) {
+//     if (passedTest) {
+//         //hoisted
+//         // console.log(firstName); (undefined)
+//         var firstName = 'John';
+//         var yearOfBirth = 1990;
+//     }
+//     // this will work
+//     console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
+// }
 
-// this won't work here. var is function scoped, and it is out its function
-// console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
+// // this won't work here. var is function scoped, and it is out its function
+// // console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
 
-driversLicense5(true);
+// driversLicense5(true);
 
-//ES6
-function driversLicense6(passedTest) {
-    //console.log(firstName); not defined
-    let firstName;
-    const yearOfBirth = 1990;
+// //ES6
+// function driversLicense6(passedTest) {
+//     //console.log(firstName); not defined
+//     let firstName;
+//     const yearOfBirth = 1990;
 
-    if (passedTest) {
+//     if (passedTest) {
 
-        firstName = 'John';
-        // console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
-    }
-    // this won't work
-    console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
-}
+//         firstName = 'John';
+//         // console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
+//     }
+//     // this won't work
+//     console.log(firstName + ', born in ' + yearOfBirth + ', is now officially allowed to drive a card.');
+// }
 
-driversLicense6(true);
+// driversLicense6(true);
 
 // let i = 23;
 // for (let i = 0;  i < 5; i++) {
@@ -525,3 +525,20 @@ driversLicense6(true);
 //     console.log(i);
 // }
 // console.log(i);
+
+// ///////////////////////////////////
+// Lecture: Block and IIFEs
+
+//ES5 iify
+(function() {
+    var c = 3;
+})();
+//console.log(c); c is not defined
+
+//ES6
+{
+    const a = 1;
+    let b = 2;
+    var c = 3;
+}
+console.log(c); // 3
