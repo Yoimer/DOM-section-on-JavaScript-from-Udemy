@@ -529,16 +529,42 @@ var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish'); */
 // ///////////////////////////////////
 // Lecture: Block and IIFEs
 
-//ES5 iify
-(function() {
-    var c = 3;
-})();
-//console.log(c); c is not defined
+// //ES5 iify
+// (function() {
+//     var c = 3;
+// })();
+// //console.log(c); c is not defined
+
+// //ES6
+// {
+//     const a = 1;
+//     let b = 2;
+//     var c = 3;
+// }
+// console.log(c); // 3
+
+// ///////////////////////////////////
+// Lecture: Strings
+let firstName = 'John';
+let lastName = 'Smith';
+const yearOfBirth = 1990;
+
+function calcAge(year) {
+    return 2016 - year;
+}
+
+//ES5
+console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today, he is ' + calcAge(yearOfBirth) + ' years old.');
 
 //ES6
-{
-    const a = 1;
-    let b = 2;
-    var c = 3;
-}
-console.log(c); // 3
+console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(yearOfBirth)} years old.`);
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('th'));
+// asks whether the string includes something
+console.log(n.includes('oh'));
+// repeats n time (n is an integer parameter)
+console.log(firstName.repeat(5));
+// adds 5 spaces in a variable
+console.log(`${firstName} `.repeat(5));
